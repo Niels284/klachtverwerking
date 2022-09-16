@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="index.php" rel="stylesheet" type="text/css">
+    <link href="index.css" rel="stylesheet" type="text/css">
     <title>klachtenformulier - opdracht 3b</title>
 </head>
+
 <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <main>
+        <h1>Klachtenformulier</h1>
+        <div class="formDiv">
+            <form method="POST" action="../src/process.php">
+                <label for="name">Username:</label>
+                <input type="text" name="name" required>
+                <label for="emailadres">Emailadres:</label>
+                <input type="text" name="emailadres" required>
+                <label for="describtion">Describtion:</label>
+                <textarea name="describtion" fixed size></textarea>
+            </form>
+        </div>
+    </main>
 </body>
+
 </html>
