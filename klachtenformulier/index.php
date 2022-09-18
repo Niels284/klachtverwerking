@@ -14,12 +14,13 @@
         <h1>Klachtenformulier</h1>
         <div class="formDiv">
             <form method="POST" action="../src/process.php">
-                <label for="name">Username:</label>
+                <label for="name">Name:</label>
                 <input type="text" name="name" required>
                 <label for="emailadres">Emailadres:</label>
                 <input type="text" name="emailadres" required>
                 <label for="describtion">Describtion:</label>
                 <textarea name="describtion" fixed size></textarea>
+                <button type="submit" name="submit">submit</button>
             </form>
         </div>
     </main>

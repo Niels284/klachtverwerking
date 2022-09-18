@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -8,40 +11,45 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['name']) && !empty($_POST['emailadres']) && !empty($_POST['describtion'])) {
+        $name = htmlspecialchars(strip_tags($_POST['name']));
+        $emailadres = htmlspecialchars(strip_tags($_POST['emailadres']));
+        $describtion = htmlspecialchars(strip_tags($_POST['describtion']));
 
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = '';                     //SMTP username
-    $mail->Password   = '';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
 
-    //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-    $mail->addAddress('ellen@example.com');               //Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('');
-    $mail->addBCC('bcc@example.com');
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'example@gmail.com';                     //SMTP username
+            $mail->Password   = '';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+            //Recipients
+            $mail->setFrom('example@gmail.com');
+            $mail->addAddress($emailadres);     //Add a recipient
+            $mail->addCC('example@gmail.com');
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Uw klacht is in behandeling';
+            $mail->Body    = $describtion;
 
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $mail->send();
+            echo '<script>alert("Message has been sent")</script>';
+            header('location:../klachtenformulier/index.php');
+        } catch (Exception $e) {
+            echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
+            header('location:../klachtenformulier/index.php');
+        }
+    }
+} else {
+    echo '<script>alert("Message could not be sent!!")</script>';
+    header('location:../klachtenformulier/index.php');
 }
