@@ -31,7 +31,7 @@ if (array_key_exists('error_reporting', $_SESSION)) {
                     echo '
                     <label for="name">Name:</label>
                     <input type="text" name="name" value="' . $_SESSION['formData']['name'] . '" required>
-                    <label for="emailaddress">emailaddress:</label>
+                    <label for="emailaddress">Emailaddress:</label>
                     <input type="text" name="emailaddress" value="' . $_SESSION['formData']['emailaddress'] . '" required>
                     <label for="description">Description:</label>
                     <textarea name="description" fixed size>' . $_SESSION['formData']['description'] . '</textarea>
@@ -40,7 +40,7 @@ if (array_key_exists('error_reporting', $_SESSION)) {
                     echo '
                     <label for="name">Name:</label>
                     <input type="text" name="name" required>
-                    <label for="emailaddress">emailaddress:</label>
+                    <label for="emailaddress">Emailaddress:</label>
                     <input type="text" name="emailaddress" required>
                     <label for="description">Description:</label>
                     <textarea name="description" fixed size></textarea>
