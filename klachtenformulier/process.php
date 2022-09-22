@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         $description = htmlspecialchars(strip_tags($_POST['description']));
 
         // constants
-        $senderMailAddress = "nielsjansenzakelijk@gmail.com";
+        $senderMailAddress = "";
         $homepage = "location:../klachtenformulier/index.php";
 
         $mail = new PHPMailer(true);
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = $senderMailAddress;
-            $mail->Password   = 'kxeibvpetmmiffbt';
+            $mail->Password   = '';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = 465;
 
