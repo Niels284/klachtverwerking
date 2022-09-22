@@ -98,7 +98,13 @@ form>textarea:focus {
     transition: 100ms linear;
 }
 
-form>button {
+.buttonSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+form>.buttonSection>button, form>.buttonSection>a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,12 +117,14 @@ form>button {
     background-position: right;
     border: 4px solid #846E4F;
     border-radius: 5px;
+    margin-right: 20px;
     font-size: 22px;
     font-weight: bold;
     transition: 200ms linear;
+    text-decoration: none;
 }
 
-form>button:hover {
+form>.buttonSection>button:hover, form>.buttonSection>a:hover {
     background-position: left;
     color: #FFFFFF;
     font-size: 24px;
