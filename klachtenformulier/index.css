@@ -80,6 +80,14 @@ form>input:focus {
     transition: 100ms linear;
 }
 
+.emailaddress.true {
+    border-bottom: 5px solid limegreen;
+}
+
+.emailaddress.false {
+    border-bottom: 5px solid red;
+}
+
 form>textarea {
     margin-bottom: 20px;
     font-size: 22px;
