@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         "description" => $_POST['description']
     );
 }
-$hallo = "Dit is een test";
+
 require_once "../src/logs/vendor/autoload.php";
 require_once '../src/phpmailer/vendor/autoload.php';
 
